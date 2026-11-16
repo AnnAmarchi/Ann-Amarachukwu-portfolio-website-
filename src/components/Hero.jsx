@@ -1,11 +1,12 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, ChevronDown, Lightbulb, Mail, MapPin, Phone, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { portfolioData } from '../data/portfolioData';
 
 function Hero() {
   const { header } = portfolioData;
-  const [showIntro, setShowIntro] = React.useState(false);
-
+  const [showIntro, setShowIntro] = useState(false);
+  
   return (
     <section id="home" className="hero-section">
       <div className="hero-overlay" />
