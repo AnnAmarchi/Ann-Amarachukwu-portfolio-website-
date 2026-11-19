@@ -1,22 +1,366 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Ann Amarachukwu Odimegwu | Lecturer, Researcher, Industrial Technical Educator, and Energy Systems Specialist."
-    />
-    <title>Ann Amarachukwu Odimegwu | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Manrope:wght@500;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111e">
+<title>Ann Amarachukwu Odimegwu | Portfolio</title>
+<meta name="description" content="Academic, engineering, research and technical education portfolio of Ann Amarachukwu Odimegwu.">
+
+<style>
+:root {
+  --bg: #07111e;
+  --surface: #0e1d2d;
+  --text: #edf5ff;
+  --muted: #a4b4c8;
+  --accent: #45d6ed;
+  --line: rgba(69,214,237,.2);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial, sans-serif;
+  line-height:1.7;
+  overflow-x:hidden;
+}
+a { color:inherit; text-decoration:none; }
+.container { width:min(1100px,90%); margin:auto; }
+header {
+  position:fixed; top:0; width:100%; z-index:20;
+  background:rgba(7,17,30,.9);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+nav {
+  height:75px; display:flex;
+  justify-content:space-between; align-items:center;
+}
+.logo { font-size:19px; font-weight:bold; letter-spacing:1px; }
+.logo span { color:var(--accent); }
+.nav-links { display:flex; gap:25px; list-style:none; }
+.nav-links a { color:var(--muted); font-size:13px; }
+.nav-links a:hover { color:var(--accent); }
+.menu { display:none; background:none; border:0; color:white; font-size:25px; }
+
+.hero {
+  min-height:100vh;
+  display:flex; align-items:center;
+  padding:130px 0 80px;
+  position:relative; overflow:hidden;
+  background:radial-gradient(ellipse at 80% 45%,#103b53 0%,transparent 45%);
+}
+.hero::before {
+  content:""; position:absolute;
+  width:450px; height:450px;
+  border:1px solid rgba(69,214,237,.15);
+  border-radius:50%; right:-100px; top:20%;
+  box-shadow:0 0 60px rgba(69,214,237,.08),
+  inset 0 0 60px rgba(69,214,237,.08);
+}
+.hero-content { position:relative; z-index:2; max-width:750px; }
+.eyebrow {
+  color:var(--accent); text-transform:uppercase;
+  letter-spacing:3px; font-size:12px; font-weight:bold;
+}
+h1 { font-size:clamp(40px,7vw,76px); line-height:1.12; margin:22px 0; }
+h1 span { color:var(--accent); }
+.hero p { color:var(--muted); max-width:620px; font-size:17px; }
+.actions { display:flex; gap:15px; flex-wrap:wrap; margin-top:35px; }
+.btn {
+  padding:13px 23px; border-radius:5px;
+  font-size:13px; font-weight:bold;
+  border:1px solid var(--accent);
+  transition:.3s;
+}
+.btn.primary { background:var(--accent); color:#07111e; }
+.btn:hover { transform:translateY(-3px); box-shadow:0 0 25px rgba(69,214,237,.2); }
+.energy {
+  position:absolute; right:12%; top:25%;
+  width:180px; height:180px;
+  border:2px solid rgba(69,214,237,.4);
+  transform:rotate(45deg);
+  box-shadow:0 0 30px rgba(69,214,237,.2);
+  animation:pulse 4s infinite alternate;
+}
+.energy::before,.energy::after {
+  content:""; position:absolute; inset:18px;
+  border:1px solid var(--accent);
+}
+.energy::after { inset:38px; }
+@keyframes pulse {
+  from { opacity:.35; box-shadow:0 0 15px rgba(69,214,237,.1); }
+  to { opacity:1; box-shadow:0 0 55px rgba(69,214,237,.35); }
+}
+section { padding:100px 0; }
+.section-title { margin-bottom:45px; }
+.section-title h2 { font-size:34px; margin:10px 0; }
+.section-title p { color:var(--muted); }
+.grid {
+  display:grid; grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+.card {
+  background:var(--surface);
+  border:1px solid var(--line);
+  padding:27px; border-radius:10px;
+  transition:.3s;
+}
+.card:hover { transform:translateY(-5px); border-color:var(--accent); }
+.card h3 { margin-bottom:12px; font-size:19px; }
+.card p { color:var(--muted); font-size:14px; }
+.tag {
+  display:inline-block; color:var(--accent);
+  background:rgba(69,214,237,.09);
+  padding:5px 10px; margin:15px 5px 0 0;
+  border-radius:4px; font-size:11px;
+}
+.about { background:#091827; }
+.timeline { border-left:1px solid var(--accent); padding-left:28px; }
+.timeline-item { margin-bottom:35px; position:relative; }
+.timeline-item::before {
+  content:""; position:absolute; left:-35px; top:9px;
+  width:12px; height:12px; border-radius:50%;
+  background:var(--accent); box-shadow:0 0 12px var(--accent);
+}
+.timeline-item p { color:var(--muted); font-size:14px; }
+.skills { display:flex; flex-wrap:wrap; gap:12px; }
+.skills span {
+  padding:12px 17px; background:var(--surface);
+  border:1px solid var(--line); border-radius:5px;
+  color:var(--muted); font-size:13px;
+}
+.contact { background:#091827; text-align:center; }
+.contact p { color:var(--muted); max-width:550px; margin:15px auto 25px; }
+footer {
+  padding:25px; text-align:center;
+  border-top:1px solid var(--line);
+  color:var(--muted); font-size:12px;
+}
+.reveal {
+  opacity:0; transform:translateY(25px);
+  transition:opacity .7s, transform .7s;
+}
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+@media(max-width:700px) {
+  .menu { display:block; }
+  .nav-links {
+    display:none; position:absolute; top:75px; left:0;
+    width:100%; padding:25px;
+    background:#0e1d2d; flex-direction:column;
+    gap:18px;
+  }
+  .nav-links.open { display:flex; }
+  .grid { grid-template-columns:1fr; }
+  .energy { right:-90px; top:30%; opacity:.5; }
+  section { padding:75px 0; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav class="container">
+  <a href="#home" class="logo">ANN<span>.</span></a>
+  <button class="menu" id="menu" aria-label="Toggle navigation">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+<div class="container hero-content">
+  <div class="eyebrow">Engineering · Research · Innovation</div>
+  <h1>Ann Amarachukwu<br><span>Odimegwu.</span></h1>
+  <p>
+    Lecturer, researcher and technical educator exploring
+    the intersection of engineering, technology, education
+    and emerging innovations.
+  </p>
+  <div class="actions">
+    <a href="#research" class="btn primary">Explore My Work ↗</a>
+    <a href="#contact" class="btn">Get In Touch</a>
+  </div>
+</div>
+<div class="energy"></div>
+</section>
+
+<section class="about" id="about">
+<div class="container reveal">
+  <div class="section-title">
+    <div class="eyebrow">Introduction</div>
+    <h2>About Me</h2>
+  </div>
+  <p style="color:var(--muted);max-width:800px">
+    I am Ann Amarachukwu Odimegwu, an academic, researcher
+    and technical educator passionate about knowledge,
+    innovation and practical problem-solving.
+    My interests span engineering education, renewable
+    energy, STEM development and emerging technologies.
+    I am also exploring artificial intelligence and
+    machine learning to expand the possibilities of
+    research, education and technological advancement.
+  </p>
+</div>
+</section>
+
+<section id="experience">
+<div class="container reveal">
+  <div class="section-title">
+    <div class="eyebrow">Professional Journey</div>
+    <h2>Experience</h2>
+    <p>Academic, technical and professional development.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <h3>Academic & Teaching Experience</h3>
+      <p>Lecturing, knowledge sharing and technical education.</p>
+    </div>
+    <div class="timeline-item">
+      <h3>Research & Technical Development</h3>
+      <p>Exploring engineering applications and research-driven solutions.</p>
+    </div>
+    <div class="timeline-item">
+      <h3>Artificial Intelligence & Machine Learning</h3>
+      <p>Developing knowledge and practical skills in emerging AI technologies.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="about" id="education">
+<div class="container reveal">
+  <div class="section-title">
+    <div class="eyebrow">Academic Background</div>
+    <h2>Education</h2>
+  </div>
+  <div class="card">
+    <h3>Academic Qualifications</h3>
+    <p>Academic training and professional development in engineering and related technical disciplines.</p>
+    <span class="tag">Engineering</span>
+    <span class="tag">Technical Education</span>
+    <span class="tag">AI & Machine Learning</span>
+  </div>
+</div>
+</section>
+
+<section id="research">
+<div class="container reveal">
+  <div class="section-title">
+    <div class="eyebrow">Ideas into Impact</div>
+    <h2>Research & Projects</h2>
+    <p>Areas of exploration, innovation and practical application.</p>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <h3>Renewable Energy</h3>
+      <p>Exploring sustainable energy technologies and engineering approaches to energy challenges.</p>
+    </div>
+    <div class="card">
+      <h3>Engineering Education</h3>
+      <p>Advancing technical learning through practical knowledge and educational innovation.</p>
+    </div>
+    <div class="card">
+      <h3>Artificial Intelligence</h3>
+      <p>Exploring AI and machine learning applications in education, research and problem-solving.</p>
+    </div>
+    <div class="card">
+      <h3>STEM Development</h3>
+      <p>Promoting scientific thinking, technical skills and innovation through STEM education.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="about" id="grants">
+<div class="container reveal">
+  <div class="section-title">
+    <div class="eyebrow">Opportunities & Recognition</div>
+    <h2>Grants & Recognition</h2>
+  </div>
+  <p style="color:var(--muted)">
+    A space for research grants, fellowships, awards,
+    scholarships and professional recognitions.
+  </p>
+</div>
+</section>
+
+<section id="expertise">
+<div class="container reveal">
+  <div class="section-title">
+    <div class="eyebrow">Knowledge & Skills</div>
+    <h2>Areas of Expertise</h2>
+  </div>
+  <div class="skills">
+    <span>Engineering</span>
+    <span>Technical Education</span>
+    <span>Research</span>
+    <span>Renewable Energy</span>
+    <span>STEM Education</span>
+    <span>Artificial Intelligence</span>
+    <span>Machine Learning</span>
+    <span>Academic Development</span>
+  </div>
+</div>
+</section>
+
+<section class="contact" id="contact">
+<div class="container reveal">
+  <div class="eyebrow">Let's Connect</div>
+  <h2 style="font-size:36px;margin:15px">Have an idea or opportunity?</h2>
+  <p>
+    I welcome meaningful conversations, research
+    collaborations, academic opportunities and
+    innovative projects.
+  </p>
+  <a href="mailto:YOUR_EMAIL@example.com" class="btn primary">Send an Email ↗</a>
+</div>
+</section>
+</main>
+
+<footer>
+  © <span id="year"></span> Ann Amarachukwu Odimegwu.
+  All rights reserved.
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const menu = document.getElementById("menu");
+const links = document.getElementById("navLinks");
+
+menu.addEventListener("click", () => {
+  links.classList.toggle("open");
+});
+
+links.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => links.classList.remove("open"));
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(element => {
+  observer.observe(element);
+});
+</script>
+
+</body>
 </html>
